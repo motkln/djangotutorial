@@ -25,7 +25,8 @@ class UserSerializer(serializers.ModelSerializer):
             role.save()
             view_question = Permission.objects.get(codename="view_question")
             can_answer = Permission.objects.get(codename="can_answer_question")
-            role.permission.set([view_question, can_answer])
+            role.permissions.set([view_question, can_answer])
 
         user.role = role
+        user.save()
         return user
